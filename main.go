@@ -12,6 +12,10 @@ import (
 	"time"
 )
 
+// @title 博客系统
+// @version 1.0
+// @description gebixls's golang trip
+// @termsOfService https://github.com/gebilxs/blog_api
 func init() {
 	err := setupSetting()
 	if err != nil {
