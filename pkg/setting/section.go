@@ -2,7 +2,6 @@ package setting
 
 import "time"
 
-//用于声明配置属性的结构体并编写读取区段配置的配置方法
 type ServerSettingS struct {
 	RunMode      string
 	HttpPort     string
@@ -36,5 +35,6 @@ func (s *Setting) ReadSection(k string, v interface{}) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

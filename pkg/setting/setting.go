@@ -6,15 +6,16 @@ type Setting struct {
 	vp *viper.Viper
 }
 
+//  初始化项目的基础配置
 func NewSetting() (*Setting, error) {
 	vp := viper.New()
 	vp.SetConfigName("config")
-	//设置相关的路径
-	vp.AddConfigPath("config/")
+	vp.AddConfigPath("configs/")
 	vp.SetConfigType("yaml")
 	err := vp.ReadInConfig()
 	if err != nil {
 		return nil, err
 	}
+
 	return &Setting{vp}, nil
 }
