@@ -2,6 +2,7 @@ package main
 
 import (
 	"blog_api/global"
+	"blog_api/internal/model"
 	"blog_api/internal/routers"
 	"blog_api/pkg/setting"
 	"github.com/gin-gonic/gin"
@@ -14,6 +15,11 @@ func init() {
 	err := setupSettings()
 	if err != nil {
 		log.Fatal(err)
+	}
+	//增加数据库方法初始化
+	err = setupDBEngine()
+	if err != nil {
+		log.Fatalf("init.setupDBEngine failed: %v", err)
 	}
 }
 func main() {
@@ -52,4 +58,13 @@ func setupSettings() error {
 	global.ServerSetting.WriteTimeout *= time.Second
 	return nil
 
+}
+
+func setupDBEngine() error {
+	var err error
+	global.DBEngine, err = model.NewDBEngine(global.DatabaseSetting)
+	if err != nil {
+		return err
+	}
+	return nil
 }
